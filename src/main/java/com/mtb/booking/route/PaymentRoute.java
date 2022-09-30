@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.LinkedHashMap;
 
 @RestController
@@ -22,15 +23,11 @@ public class PaymentRoute {
     }
 
     @PostMapping("https://webhook.site/108510f5-8b76-4bfe-afc3-e1e6f458d6fb")
-    public Payment webhook(@RequestBody Payment payload) {
-        return payload;
-    }
-    @PostMapping("https://webhook.site/108510f5-8b76-4bfe-afc3-e1e6f458d6fb")
-    public Payment webhook() {
-        Payment payment = new Payment();
+    public Payment webhook(@RequestBody Payment payment) {
         payment.setAmount(payment.getAmount());
         payment.setCustomer(payment.getCustomer());
         payment.setTicket(payment.getTicket());
+        payment.setDatecreated(new Date());
         payment.setStatus(PaymentStatus.PAID.name());
         return payment;
     }
