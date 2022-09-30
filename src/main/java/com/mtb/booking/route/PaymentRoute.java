@@ -4,7 +4,9 @@ import com.mtb.booking.dto.paysatckdto.InitiateRequest;
 import com.mtb.booking.enums.PaymentStatus;
 import com.mtb.booking.model.Payment;
 import com.mtb.booking.service.PaymentService;
+import jdk.jfr.Event;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.LinkedHashMap;
 @RestController
 @RequestMapping("/ticket")
 @RequiredArgsConstructor
+@Slf4j
 public class PaymentRoute {
     private final PaymentService paymentService;
 
