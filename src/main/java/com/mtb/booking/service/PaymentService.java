@@ -5,5 +5,5 @@ import org.springframework.http.ResponseEntity;
 
 public interface PaymentService {
     ResponseEntity initiatePayment(String amount, InitiateRequest request, Long userId, Long ticketId);
-    ResponseEntity listPayment(Long paymentId);
+
 }

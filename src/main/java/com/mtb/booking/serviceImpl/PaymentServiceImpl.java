@@ -28,6 +28,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 
 import static com.mtb.booking.util.AppCode.*;
+import static com.mtb.booking.util.MessageUtil.SUCCESS;
 
 @Service
 @RequiredArgsConstructor
@@ -107,15 +108,11 @@ public class PaymentServiceImpl implements PaymentService {
 
             }else{
 
-            return ResponseEntity.ok("Success");
+            throw new RecordNotFoundException(NOT_FOUND);
 
             }
 
         }
     }
-    @Override
-    public ResponseEntity listPayment(Long paymentId) {
-        List<Payment> paymentList = paymentRepo.findAll();
-        return ResponseEntity.ok(paymentList);
-    }
+
 }

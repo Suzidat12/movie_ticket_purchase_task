@@ -10,6 +10,7 @@ import com.mtb.booking.model.Movies;
 import com.mtb.booking.model.Users;
 import com.mtb.booking.repo.MovieRepo;
 import com.mtb.booking.service.MovieService;
+import com.mtb.booking.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -85,7 +86,6 @@ public class MovieServiceImpl implements MovieService {
     @Override
     public ResponseEntity listMovies() {
         List<Movies> movies = movieRepo.findAll();
-        return ResponseEntity.ok(movies);
-
+        return ResponseEntity.ok(new ApiResponse<>(SUCCESS, OKAY, Utils.maptoMoviesList(movies)));
     }
 }

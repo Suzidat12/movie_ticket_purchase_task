@@ -9,7 +9,7 @@ import com.mtb.booking.exception.RecordNotFoundException;
 import com.mtb.booking.model.Users;
 import com.mtb.booking.repo.UserRepo;
 import com.mtb.booking.service.UsersService;
-import com.mtb.booking.util.Mapper;
+import com.mtb.booking.util.Utils;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.ResponseEntity;
@@ -81,13 +81,13 @@ public class UserServiceImpl implements UsersService {
     @Override
     public ResponseEntity listUsers() {
         List<Users> users = userRepo.findAll();
-        return ResponseEntity.ok(users);
+        return ResponseEntity.ok(new ApiResponse<>(SUCCESS, OKAY, Utils.maptoUsersList(users)));
     }
 
     @Override
     public ResponseEntity login(LoginDto login) {
         List<Users> usersList = userRepo.checkLogin(login.getUserEmail(), login.getPassword());
-        List<UsersDto> list = Mapper.maptoUsersList(usersList);
+        List<UsersDto> list = Utils.maptoUsersList(usersList);
         UsersDto acct = null;
         LoginResponse resp = new LoginResponse();
         if (list.isEmpty() ) {

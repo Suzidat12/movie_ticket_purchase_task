@@ -16,4 +16,19 @@ public class TbookingRoute {
     public ResponseEntity addBooking(@RequestBody Ticket load, @RequestParam("userId")Long userId, @RequestParam("movieId")Long movieId){
         return bookingService.addBooking(load,userId,movieId);
     }
+
+    @PutMapping("/updateTicket")
+    public ResponseEntity updateBooking(@RequestBody Ticket load, @RequestParam("ticketId")Long ticketId){
+        return bookingService.updateBooking(load, ticketId);
+    }
+
+    @DeleteMapping("/deleteTicket")
+    public ResponseEntity deleteBooking( @RequestParam("ticketId")Long ticketId){
+        return bookingService.deleteBooking(ticketId);
+    }
+
+    @GetMapping("/listTicket")
+    public ResponseEntity<?> listTicket(){
+        return bookingService.listTicket();
+    }
 }

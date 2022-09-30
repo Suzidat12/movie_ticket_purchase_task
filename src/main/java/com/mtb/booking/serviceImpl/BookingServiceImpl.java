@@ -2,11 +2,8 @@ package com.mtb.booking.serviceImpl;
 
 import com.mtb.booking.dto.ApiResponse;
 import com.mtb.booking.dto.Ticket;
-import com.mtb.booking.dto.paysatckdto.InitiateResponse;
-import com.mtb.booking.enums.PaymentStatus;
 import com.mtb.booking.exception.DuplicationRecordException;
 import com.mtb.booking.exception.RecordNotFoundException;
-import com.mtb.booking.feign.PaystackFeign;
 import com.mtb.booking.model.Movies;
 import com.mtb.booking.model.Tbooking;
 import com.mtb.booking.model.Users;
@@ -14,6 +11,7 @@ import com.mtb.booking.repo.MovieRepo;
 import com.mtb.booking.repo.TbookingRepo;
 import com.mtb.booking.repo.UserRepo;
 import com.mtb.booking.service.BookingService;
+import com.mtb.booking.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -34,7 +32,7 @@ public class BookingServiceImpl implements BookingService {
     private final TbookingRepo tbookingRepo;
     private final UserRepo userRepo;
     private final MovieRepo movieRepo;
-    private final PaystackFeign paystackFeign;
+
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
     @Override
@@ -87,8 +85,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public ResponseEntity listBookings() {
+    public ResponseEntity listTicket() {
         List<Tbooking> tbookingList = tbookingRepo.findAll();
-        return ResponseEntity.ok(tbookingList);
+        return ResponseEntity.ok(new ApiResponse<>(SUCCESS, OKAY,Utils.maptoTicketList(tbookingList)));
     }
 }

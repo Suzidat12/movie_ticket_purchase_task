@@ -7,5 +7,5 @@ public interface BookingService {
     ResponseEntity addBooking(Ticket load, Long userId, Long movieId);
     ResponseEntity updateBooking(Ticket load , Long ticketId);
     ResponseEntity deleteBooking(Long ticketId);
-    ResponseEntity listBookings();
+    ResponseEntity<?> listTicket();
 }

@@ -18,12 +18,12 @@ public class MoviesRoute {
         return movieService.addMovie(load);
     }
 
-    @PutMapping("/updateMovie")
+    @PutMapping("/updateMovies")
     public ResponseEntity updateMovie(@RequestBody MovieDto load, @RequestParam("movieId") Long movieId){
         return movieService.updateMovie(load, movieId);
     }
 
-    @DeleteMapping("/deleteMovie")
+    @DeleteMapping("/deleteMovies")
     public ResponseEntity deleteMovie( @RequestParam("movieId") Long movieId){
         return movieService.deleteMovie(movieId);
     }
