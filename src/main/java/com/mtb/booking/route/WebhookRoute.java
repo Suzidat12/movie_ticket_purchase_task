@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/webhook")
 public class WebhookRoute {
-    @PostMapping // http://localhost:8080/api/webhook
+    @PostMapping
     public ResponseEntity<String> print(@RequestBody String requestBody) {
-        System.out.println("###### Webhook #####" + requestBody);
+        System.out.println("Webhook" + requestBody);
         return new ResponseEntity<String >(requestBody, HttpStatus.OK);
     }
 }
