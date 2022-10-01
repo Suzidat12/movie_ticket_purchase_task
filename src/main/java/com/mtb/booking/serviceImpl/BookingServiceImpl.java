@@ -42,7 +42,14 @@ public class BookingServiceImpl implements BookingService {
         Optional<Movies> moviesOptional = movieRepo.findById(movieId);
         if (!tbookingsList.isEmpty()) {
             throw new DuplicationRecordException(DUPLICATE);
-        } else {
+        }
+        if(!usersOptional.isPresent()){
+            throw new RecordNotFoundException(NOT_FOUND);
+        }
+        if(!moviesOptional.isPresent()){
+            throw new RecordNotFoundException(NOT_FOUND);
+        }
+        else {
             Users users = usersOptional.get();
             Movies movies = moviesOptional.get();
             Tbooking tbooking = new Tbooking();

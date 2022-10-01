@@ -58,7 +58,7 @@ public class MovieServiceImpl implements MovieService {
             Movies movies = moviesOptional.get();
             movies.setMovieHour(load.getHours());
             movies.setMovieName(load.getName());
-            movies.setMovieDate(LocalDate.parse(load.getMovieDate()));
+            movies.setMovieDate(LocalDate.parse(load.getMovieDate(),formatter));
             movies.setMovieLanguage(load.getLanguage());
             movies.setMovieStatus(MovieStatus.Movie_Available.name());
             movies.setMovieType(MovieType.ENGLISH.name());
