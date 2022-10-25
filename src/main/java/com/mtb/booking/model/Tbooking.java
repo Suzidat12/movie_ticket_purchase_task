@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "tbooking")
 @Data
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Tbooking.findAll", query = "SELECT t FROM Tbooking t")})
 public class Tbooking implements Serializable {

@@ -21,13 +21,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "users")
 @Data
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")})
 public class Users implements Serializable {
 
-    @OneToMany(mappedBy = "customer")
-    private List<Payment> paymentList;
+    
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -52,6 +50,12 @@ public class Users implements Serializable {
 
     @OneToMany(mappedBy = "tbookingUser", cascade = CascadeType.ALL)
     private List<Tbooking> tbookingList;
+    
+    @OneToMany(mappedBy = "userid")
+    private List<Roleuser> roleuserList;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Payment> paymentList;
 
     public Users() {
     }
@@ -67,6 +71,14 @@ public class Users implements Serializable {
 
     public void setPaymentList(List<Payment> paymentList) {
         this.paymentList = paymentList;
+    }
+
+    public List<Roleuser> getRoleuserList() {
+        return roleuserList;
+    }
+
+    public void setRoleuserList(List<Roleuser> roleuserList) {
+        this.roleuserList = roleuserList;
     }
 
 

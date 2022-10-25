@@ -6,6 +6,8 @@
     <class>com.mtb.booking.model.Tbooking</class>
     <class>com.mtb.booking.model.Users</class>
     <class>com.mtb.booking.model.Payment</class>
+    <class>com.mtb.booking.model.Roleuser</class>
+    <class>com.mtb.booking.model.Roles</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/ticket_booking_task?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;autoReconnect=true&amp;useSSL=false&amp;noAccessToProcedureBodies=true "/>
       <property name="javax.persistence.jdbc.user" value="root"/>

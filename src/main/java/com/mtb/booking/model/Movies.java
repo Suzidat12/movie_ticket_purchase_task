@@ -23,12 +23,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "movies")
 @Data
-@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Movies.findAll", query = "SELECT m FROM Movies m")})
 public class Movies implements Serializable {
-
-
 
     private static final long serialVersionUID = 1L;
     @Id

@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "payment")
 @Data
-@XmlRootElement
+
 @NamedQueries({
     @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p")})
 public class Payment implements Serializable {
