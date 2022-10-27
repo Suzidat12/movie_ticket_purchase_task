@@ -51,7 +51,7 @@ public class Users implements Serializable {
     @OneToMany(mappedBy = "tbookingUser", cascade = CascadeType.ALL)
     private List<Tbooking> tbookingList;
     
-    @OneToMany(mappedBy = "userid")
+    @OneToMany(mappedBy = "userid", cascade = CascadeType.ALL)
     private List<Roleuser> roleuserList;
 
     @OneToMany(mappedBy = "customer")
