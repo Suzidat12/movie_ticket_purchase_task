@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepo extends JpaRepository<Users,Long> {
     @Query("select st from Users st where st.usersEmail=?1")
@@ -18,4 +19,9 @@ public interface UserRepo extends JpaRepository<Users,Long> {
             + "or users_mobile_no=:email",
             nativeQuery=true)
     List<Users> isRecordExists(@Param("email")String email);
+   // Optional<Users> findByUsername(String usersName);
+
+//    Boolean existsByUsername(String usersName);
+
+//    Boolean existsByEmail(String usersEmail);
 }

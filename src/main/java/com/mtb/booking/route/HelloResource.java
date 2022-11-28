@@ -7,6 +7,7 @@ import com.mtb.booking.security.filters.MyUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,11 +26,13 @@ public class HelloResource {
     @Autowired
     private JwtUtil jwtUtil;
     @RequestMapping("/hello")
+    @PreAuthorize("hasRole('ADMIN')")
     public String hello(){
         return "Hello World";
     }
 
     @RequestMapping("/success")
+    @PreAuthorize("hasRole('USER')")
     public String success(){
         return "Thank you for teaching me JWT Mr. Habeeb";
     }

@@ -18,16 +18,10 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     private MyUserDetailsService myUserDetailsService;
     @Autowired
     private JwtRequestFilter jwtRequestFilter;
+    @Autowired
+    private UnauthorizedEntryPoint unauthorizedEntryPoint;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
 
-        auth.userDetailsService(myUserDetailsService);
-        auth.inMemoryAuthentication().withUser("zikdot").password("244444").roles("ACCOUNTS");
-        auth.inMemoryAuthentication().withUser("adex234").password("234566").roles("SUPPORT");
-        auth.inMemoryAuthentication().withUser("sophis").password("soft").roles("ACCOUNTS");
-    }
 
     @Override
     @Bean
@@ -44,8 +38,16 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 //        super.configure(http);
         http.csrf().disable().authorizeRequests().antMatchers("/authenticate").
-               permitAll().anyRequest().authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+               permitAll().anyRequest().authenticated().and().exceptionHandling().
+                authenticationEntryPoint(unauthorizedEntryPoint).and().
+                sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter,UsernamePasswordAuthenticationFilter.class);
 
+    }
+
+
+    @Bean
+    public JwtRequestFilter authenticationTokenFilterBean() throws Exception {
+        return new JwtRequestFilter();
     }
 }
